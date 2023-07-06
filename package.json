@@ -11,6 +11,7 @@
     "prettier:check": "prettier --check --ignore-unknown ."
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.0.0-beta.3",
     "@formkit/auto-animate": "^0.7.0",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
