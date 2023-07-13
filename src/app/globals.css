@@ -15,3 +15,7 @@ body {
     #000413 100%
   );
 }
+
+.billboard-video {
+  aspect-ratio: 20/9;
+}
