@@ -5,7 +5,6 @@ import { DrizzleAdapter } from '@/lib/auth/drizzle-adapter'
 import { db } from '@/db'
 import { users } from '@/db/schema'
 import type { NextAuthOptions, Session } from 'next-auth'
-import { DefaultJWT, JWT } from 'next-auth/jwt'
 
 export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db),

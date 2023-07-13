@@ -1,7 +1,7 @@
 import { createId } from '@paralleldrive/cuid2'
 import { and, eq } from 'drizzle-orm'
 import { accounts, sessions, users, verificationTokens } from '../../db/schema'
-import type { Adapter } from 'next-auth/adapters'
+import type { Adapter, AdapterSession } from 'next-auth/adapters'
 import type { VercelPgDatabase } from 'drizzle-orm/vercel-postgres'
 
 export function DrizzleAdapter(db: VercelPgDatabase): Adapter {
@@ -97,23 +97,23 @@ export function DrizzleAdapter(db: VercelPgDatabase): Adapter {
           ),
         )
     },
-    async createSession(data) {
+    async createSession(session: any): Promise<any> {
       await db.insert(sessions).values({
         id: createId(),
-        expires: data.expires,
-        sessionToken: data.sessionToken,
-        userId: data.userId,
+        sessionToken: session.sessionToken,
+        userId: session.userId,
+        expires: session.expires,
       })
       const rows = await db
         .select()
         .from(sessions)
-        .where(eq(sessions.sessionToken, data.sessionToken))
+        .where(eq(sessions.sessionToken, session.sessionToken))
         .limit(1)
       const row = rows[0]
       if (!row) throw new Error('User not found')
       return row
     },
-    async getSessionAndUser(sessionToken) {
+    async getSessionAndUser(sessionToken): Promise<any> {
       const rows = await db
         .select({
           user: users,
@@ -141,7 +141,7 @@ export function DrizzleAdapter(db: VercelPgDatabase): Adapter {
         },
       }
     },
-    async updateSession(session) {
+    async updateSession(session: any): Promise<any> {
       await db
         .update(sessions)
         .set(session)
@@ -158,7 +158,7 @@ export function DrizzleAdapter(db: VercelPgDatabase): Adapter {
     async deleteSession(sessionToken) {
       await db.delete(sessions).where(eq(sessions.sessionToken, sessionToken))
     },
-    async createVerificationToken(verificationToken) {
+    async createVerificationToken(verificationToken: any): Promise<any> {
       await db.insert(verificationTokens).values({
         expires: verificationToken.expires,
         identifier: verificationToken.identifier,
@@ -174,7 +174,7 @@ export function DrizzleAdapter(db: VercelPgDatabase): Adapter {
         throw new Error('Coding bug: inserted verification token not found')
       return row
     },
-    async useVerificationToken({ identifier, token }) {
+    async useVerificationToken({ identifier, token }): Promise<any> {
       const rows = await db
         .select()
         .from(verificationTokens)
