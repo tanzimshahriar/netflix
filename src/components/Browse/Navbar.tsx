@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Logo from '../Logo'
-import { usePathname } from 'next/navigation'
+import { headers } from 'next/headers'
 
 const links = [
   {
@@ -30,7 +30,10 @@ const links = [
 ]
 
 const Navbar = () => {
-  const pathname = usePathname()
+  const headersList = headers()
+  const domain = headersList.get('host') || ''
+  const fullUrl = headersList.get('referer') || ''
+  const [, pathname] = fullUrl.match(new RegExp(`https?://${domain}(.*)`)) || []
   return (
     <div className="fixed top-0 w-full">
       <nav className="container flex h-16 items-center justify-between text-white">
