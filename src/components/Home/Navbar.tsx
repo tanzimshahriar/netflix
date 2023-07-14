@@ -1,5 +1,6 @@
-import Link from 'next/link'
+'use client'
 import Logo from '../Logo'
+import { signIn } from 'next-auth/react'
 
 const Navbar = () => {
   return (
@@ -7,12 +8,12 @@ const Navbar = () => {
       <div className="w-24 lg:w-32">
         <Logo />
       </div>
-      <Link
+      <button
         className="rounded-md bg-red-600 px-4 py-1.5 text-sm font-semibold text-white"
-        href="/api/auth/login"
+        onClick={() => signIn()}
       >
         Sign In
-      </Link>
+      </button>
     </nav>
   )
 }

@@ -1,8 +1,8 @@
 import { createId } from '@paralleldrive/cuid2'
 import { and, eq } from 'drizzle-orm'
-import { accounts, sessions, users, verificationTokens } from '../../db/schema'
-import type { Adapter, AdapterSession } from 'next-auth/adapters'
 import type { VercelPgDatabase } from 'drizzle-orm/vercel-postgres'
+import type { Adapter } from 'next-auth/adapters'
+import { accounts, sessions, users, verificationTokens } from '../../db/schema'
 
 export function DrizzleAdapter(db: VercelPgDatabase): Adapter {
   return {

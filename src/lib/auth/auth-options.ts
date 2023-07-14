@@ -1,10 +1,11 @@
-import GithubProvider from 'next-auth/providers/github'
-import GoogleProvider from 'next-auth/providers/google'
-import { eq } from 'drizzle-orm'
-import { DrizzleAdapter } from '@/lib/auth/drizzle-adapter'
 import { db } from '@/db'
+import { DrizzleAdapter } from '@/lib/auth/drizzle-adapter'
+import { eq } from 'drizzle-orm'
+import type { NextAuthOptions } from 'next-auth'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import { users } from '@/db/schema'
-import type { NextAuthOptions, Session } from 'next-auth'
+import { compare } from 'bcryptjs'
+import { v4 as uuidv4 } from 'uuid'
 
 export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db),
@@ -12,54 +13,74 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: '/',
-  },
+  // pages: {
+  //   signIn: '/',
+  // },
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    CredentialsProvider({
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials.password) {
+          throw new Error('Invalid username/password')
+        }
+
+        const user = await db
+          .select({
+            id: users.id,
+            password: users.password,
+            name: users.name,
+            email: users.email,
+          })
+          .from(users)
+          .where(eq(users.email, credentials.email))
+
+        if (
+          !user ||
+          !user[0] ||
+          !(await compare(credentials.password, user[0].password || ''))
+        ) {
+          throw new Error('Invalid username/password')
+        }
+
+        return {
+          id: user[0].id,
+          email: user[0].email,
+          name: user[0].name,
+          randomKey: uuidv4(),
+        }
+      },
+      credentials: {
+        email: {
+          label: 'Email',
+          type: 'email',
+          placeholder: 'example@example.com',
+        },
+        password: { label: 'Password', type: 'password' },
+      },
     }),
   ],
   callbacks: {
-    async session({ token, session }: { token: any; session: any }) {
-      if (token) {
-        session = {
-          user: {
-            id: token.id,
-            name: token.name,
-            email: token.email,
-            picture: token.picture,
-          },
-        }
-      }
-
-      return session
-    },
-    async jwt({ token, user }) {
-      const [dbUser] = await db
-        .select()
-        .from(users)
-        .where(eq(users.email, token.email || ''))
-        .limit(1)
-
-      if (!dbUser) {
-        if (user) {
-          token.id = user?.id
-        }
-        return token
-      }
-
+    session: ({ session, token }) => {
+      console.log('Session Callback', { session, token })
       return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          randomKey: token.randomKey,
+        },
       }
+    },
+    jwt: ({ token, user }) => {
+      console.log('JWT Callback', { token, user })
+      if (user) {
+        const u = user as unknown as any
+        return {
+          ...token,
+          id: u.id,
+          randomKey: u.randomKey,
+        }
+      }
+      return token
     },
   },
 }
