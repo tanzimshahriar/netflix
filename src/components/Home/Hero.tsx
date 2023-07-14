@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <>
       <Image
-        className="absolute -z-10 object-cover brightness-[35%]"
+        className="absolute -z-10 bg-black object-cover brightness-[35%]"
         fill
         src="/home-bg.jpg"
         alt="hero-background"

@@ -3,8 +3,6 @@ import 'dotenv/config'
 
 if (!process.env.POSTGRES_URL) {
   throw new Error('POSTGRES_URL is missing')
-} else {
-  console.log('POSTGRES URL IS: ', process.env.POSTGRES_URL)
 }
 
 export default {

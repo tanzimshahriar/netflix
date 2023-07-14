@@ -6,7 +6,6 @@ import { users } from '@/db/schema'
 
 export const getSession = async () => {
   const session = await getServerSession(authOptions)
-
   return session
 }
 

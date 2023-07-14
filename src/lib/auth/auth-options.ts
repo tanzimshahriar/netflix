@@ -13,13 +13,14 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   secret: process.env.NEXTAUTH_SECRET,
-  // pages: {
-  //   signIn: '/',
-  // },
+  pages: {
+    signIn: '/signin',
+  },
   providers: [
     CredentialsProvider({
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) {
+      async authorize(credentials: any) {
+        console.log(credentials)
+        if (!credentials?.username || !credentials.password) {
           throw new Error('Invalid username/password')
         }
 
@@ -31,8 +32,9 @@ export const authOptions: NextAuthOptions = {
             email: users.email,
           })
           .from(users)
-          .where(eq(users.email, credentials.email))
+          .where(eq(users.email, credentials.username))
 
+        console.log('yser us :', user)
         if (
           !user ||
           !user[0] ||
@@ -60,7 +62,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log('Session Callback', { session, token })
       return {
         ...session,
         user: {
@@ -71,7 +72,6 @@ export const authOptions: NextAuthOptions = {
       }
     },
     jwt: ({ token, user }) => {
-      console.log('JWT Callback', { token, user })
       if (user) {
         const u = user as unknown as any
         return {

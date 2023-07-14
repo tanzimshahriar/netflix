@@ -12,7 +12,6 @@ export async function POST(req: Request) {
       password: string
     }
     const hashed_password = await hash(password, 12)
-    console.log(db._.tableNamesMap)
     const user = await db
       .insert(users)
       .values({

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Logo from '../Logo'
 import { headers } from 'next/headers'
+import LogoutButton from './LogoutButton'
 
 const links = [
   {
@@ -55,12 +56,7 @@ const Navbar = () => {
             ))}
           </div>
         </div>
-        <Link
-          className="rounded-md bg-red-600 px-4 py-1.5 text-sm font-semibold text-white"
-          href="/api/auth/logout"
-        >
-          Logout
-        </Link>
+        <LogoutButton />
       </nav>
     </div>
   )
