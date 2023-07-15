@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const SignupLetter = () => {
   return (
     <>
@@ -11,9 +13,12 @@ const SignupLetter = () => {
           type="email"
           placeholder="Email address"
         ></input>
-        <button className="rounded-md bg-red-600 px-4 py-2 font-semibold md:text-xl">
+        <Link
+          href="/signup"
+          className="flex items-center rounded-md bg-red-600 px-4 py-2 font-semibold duration-300 hover:bg-red-500 md:text-xl"
+        >
           Get Started
-        </button>
+        </Link>
       </div>
     </>
   )

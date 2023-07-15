@@ -11,9 +11,9 @@ const Signin = async () => {
   await applyUnauthContext()
 
   return (
-    <main className="relative min-h-screen">
+    <main className="relative">
       <Image
-        className="-z-10 h-screen w-screen bg-black object-cover brightness-[35%]"
+        className="-z-10 w-screen bg-black object-cover brightness-[35%]"
         src="/login-bg.jpeg"
         alt="background-image"
         fill

@@ -7,21 +7,21 @@ import Link from 'next/link'
 const Signup = async () => {
   await applyUnauthContext()
   return (
-    <main className="relative min-h-screen">
+    <main className="relative bg-black md:bg-transparent">
       <Image
-        className="-z-10 h-screen w-screen bg-black object-cover brightness-[35%]"
+        className="-z-10 hidden w-screen bg-black object-cover brightness-[35%] md:block"
         src="/login-bg.jpeg"
         alt="background-image"
         fill
       />
 
-      <div className=" text-white">
+      <div className="text-white">
         <div className="container">
-          <Link href="/" className="block w-32 py-8 lg:w-44">
+          <Link href="/" className="absolute block w-32 py-8 md:static lg:w-44">
             <Logo />
           </Link>
-          <div className="flex justify-center pb-24">
-            <div className="h-[660px] w-[450px] rounded-md bg-black bg-opacity-70 p-14">
+          <div className="w-full justify-center pt-12 md:flex md:pb-24 md:pt-0">
+            <div className="rounded-md bg-black px-0 py-14 md:h-[660px] md:w-[450px] md:bg-opacity-70 md:px-14">
               <h1 className="pb-8 text-3xl font-medium">Sign up</h1>
               <div className="flex flex-col space-y-4">
                 <div className="group relative">
@@ -68,7 +68,7 @@ const Signup = async () => {
                 </div>
               </div>
               <div className="flex w-full pt-10">
-                <button className="h-12 flex-1 rounded-md bg-red-600 text-sm font-medium">
+                <button className="h-12 flex-1 rounded-md bg-red-600 text-sm font-medium duration-300 hover:bg-red-500">
                   Sign up
                 </button>
               </div>
