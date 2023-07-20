@@ -18,6 +18,7 @@ const BannerAutoplay = ({
       autoplay: 1,
       playlist: youtubeKey,
       loop: 1,
+      origin: window.origin,
     },
   }
 
@@ -36,10 +37,6 @@ const BannerAutoplay = ({
     }
     setMuted(!muted)
   }
-
-  useEffect(() => {
-    video?.playVideo()
-  }, [])
 
   return (
     <div className="relative h-full overflow-hidden">
