@@ -21,7 +21,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials: any) {
         console.log(credentials)
         if (!credentials?.username || !credentials.password) {
-          throw new Error('Invalid username/password')
+          throw new Error('Sorry, please provide user credentials.')
         }
 
         const user = await db
@@ -34,13 +34,14 @@ export const authOptions: NextAuthOptions = {
           .from(users)
           .where(eq(users.email, credentials.username))
 
-        console.log('yser us :', user)
-        if (
-          !user ||
-          !user[0] ||
-          !(await compare(credentials.password, user[0].password || ''))
-        ) {
-          throw new Error('Invalid username/password')
+        if (!user || !user[0]) {
+          throw new Error(
+            "Sorry, but we can't find an account with this email address.",
+          )
+        }
+
+        if (!(await compare(credentials.password, user[0].password || ''))) {
+          throw new Error('Invalid password.')
         }
 
         return {
