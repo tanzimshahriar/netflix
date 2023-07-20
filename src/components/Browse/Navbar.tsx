@@ -36,8 +36,8 @@ const Navbar = () => {
   const fullUrl = headersList.get('referer') || ''
   const [, pathname] = fullUrl.match(new RegExp(`https?://${domain}(.*)`)) || []
   return (
-    <div className="fixed top-0 w-full">
-      <nav className="container flex h-16 items-center justify-between text-white">
+    <div className="fixed top-0 z-30 w-full">
+      <nav className="flex h-16 items-center justify-between px-4 text-white md:px-8 lg:px-12 xl:px-16">
         <div className="flex items-center gap-8">
           <div className="w-24 lg:w-32">
             <Logo />
