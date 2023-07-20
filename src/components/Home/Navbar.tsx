@@ -7,7 +7,8 @@ import Spinning from '../Ui/Spinning'
 
 const Navbar = () => {
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(
-    sessionStorage.getItem('disclaimerAccepted') === 'true',
+    window !== undefined &&
+      sessionStorage.getItem('disclaimerAccepted') === 'true',
   )
   const [signingIn, setSigningIn] = useState(false)
   return (
