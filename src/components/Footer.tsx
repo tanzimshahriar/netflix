@@ -1,4 +1,3 @@
-
 const buttons = [
   'FAQ',
   'Help Centre',
