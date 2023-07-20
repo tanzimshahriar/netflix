@@ -6,11 +6,10 @@ import Link from 'next/link'
 import Spinning from '../Ui/Spinning'
 
 const Navbar = () => {
-  // const [disclaimerAccepted, setDisclaimerAccepted] = useState(
-  //   window !== undefined &&
-  //     sessionStorage.getItem('disclaimerAccepted') === 'true',
-  // )
-  const [disclaimerAccepted, setDisclaimerAccepted] = useState(true)
+  const [disclaimerAccepted, setDisclaimerAccepted] = useState(
+    window !== undefined &&
+      sessionStorage.getItem('disclaimerAccepted') === 'true',
+  )
   const [signingIn, setSigningIn] = useState(false)
   return (
     <nav className="flex justify-between py-4">

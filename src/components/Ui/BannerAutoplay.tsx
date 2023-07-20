@@ -40,12 +40,12 @@ const BannerAutoplay = ({
 
   return (
     <div className="relative h-full overflow-hidden">
-      {/* <YouTube
+      <YouTube
         className="youtube-iframe-wrapper flex h-full w-full items-center justify-center"
         videoId={youtubeKey}
         opts={opts}
         onReady={handleReady}
-      /> */}
+      />
       <div className="absolute left-0 top-0 h-full w-full bg-black bg-opacity-40"></div>
       <button
         onClick={toggleMute}
