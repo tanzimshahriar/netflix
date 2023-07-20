@@ -4,7 +4,7 @@ import ParagraphWithButton from './ParagraphWithButton'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { SignInResponse, signIn } from 'next-auth/react'
 import { ZodError, ZodIssue, z } from 'zod'
-import Spinning from '../Ui/Spinning'
+import Spinning from '../Spinning'
 import { useRouter } from 'next/navigation'
 
 const MOCK_USER = 'tanzim@yahoo.com'

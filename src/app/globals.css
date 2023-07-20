@@ -13,5 +13,10 @@
 }
 
 .billboard-video {
-  aspect-ratio: 20/9;
+  aspect-ratio: 10/4;
+}
+
+.youtube-iframe-wrapper iframe {
+  width: 180%;
+  height: 180%;
 }

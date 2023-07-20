@@ -19,7 +19,6 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       async authorize(credentials: any) {
-        console.log(credentials)
         if (!credentials?.username || !credentials.password) {
           throw new Error('Sorry, please provide user credentials.')
         }

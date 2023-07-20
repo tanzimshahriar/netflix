@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Logo from '../Logo'
 import { headers } from 'next/headers'
-import LogoutButton from './LogoutButton'
+import LogoutButton from '../Ui/LogoutButton'
 
 const links = [
   {

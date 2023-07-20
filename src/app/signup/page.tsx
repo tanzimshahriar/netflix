@@ -1,4 +1,4 @@
-import ParagraphWithButton from '@/components/Form/ParagraphWithButton'
+import ParagraphWithButton from '@/components/Ui/Form/ParagraphWithButton'
 import Logo from '@/components/Logo'
 import { applyUnauthContext } from '@/lib/authUtils'
 import Image from 'next/image'

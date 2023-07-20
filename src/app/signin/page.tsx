@@ -1,5 +1,5 @@
-import ParagraphWithButton from '@/components/Form/ParagraphWithButton'
-import SigninForm from '@/components/Form/SigninForm'
+import ParagraphWithButton from '@/components/Ui/Form/ParagraphWithButton'
+import SigninForm from '@/components/Ui/Form/SigninForm'
 import Logo from '@/components/Logo'
 import { applyUnauthContext } from '@/lib/authUtils'
 import { SignInResponse, signIn } from 'next-auth/react'
