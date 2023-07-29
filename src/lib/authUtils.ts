@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { getCurrentUser, getSession } from './auth/session'
+import { getSession } from './auth/session'
 
 export const applyAuthContext = async () => {
   const session = await getSession()
@@ -11,7 +11,6 @@ export const applyAuthContext = async () => {
 
 export const applyUnauthContext = async () => {
   const session = await getSession()
-  const currentUser = await getCurrentUser()
   if (session) {
     redirect('/browse')
   }

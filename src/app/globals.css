@@ -12,11 +12,7 @@
   );
 }
 
-.billboard-video {
-  aspect-ratio: 10/4;
-}
-
 .youtube-iframe-wrapper iframe {
-  width: 180%;
-  height: 180%;
+  width: 1900%;
+  height: 190%;
 }

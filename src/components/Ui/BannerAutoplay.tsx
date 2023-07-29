@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import YouTube from 'react-youtube'
 
 const BannerAutoplay = ({
@@ -13,17 +13,17 @@ const BannerAutoplay = ({
   title: string
   overview: string
 }) => {
+  const [video, setVideo] = useState<any>(undefined)
+  const [muted, setMuted] = useState(true)
   const opts = {
     playerVars: {
-      autoplay: 1,
+      controls: 0,
       playlist: youtubeKey,
       loop: 1,
-      origin: window.origin,
+      autoplay: 1,
+      mute: 1,
     },
   }
-
-  const [video, setVideo] = useState<any>(undefined)
-  const [muted, setMuted] = useState(false)
 
   const handleReady = (event: { target: any }) => {
     setVideo(() => event.target)
@@ -45,6 +45,7 @@ const BannerAutoplay = ({
         videoId={youtubeKey}
         opts={opts}
         onReady={handleReady}
+        onPause={() => video.playVideo()}
       />
       <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-b from-black via-zinc-600 to-black opacity-30"></div>
       <button

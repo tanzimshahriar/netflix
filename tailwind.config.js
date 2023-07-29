@@ -24,5 +24,5 @@ module.exports = {
       center: true,
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
 }

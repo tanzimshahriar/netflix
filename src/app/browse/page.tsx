@@ -1,57 +1,28 @@
-import Navbar from '@/components/Browse/Navbar'
 import Banner from '@/components/Browse/Banner'
+import CollectionRowWrapper from '@/components/Browse/CollectionRowWrapper'
+import Navbar from '@/components/Browse/Navbar'
 import { applyAuthContext } from '@/lib/authUtils'
-import { getPopularMovies } from '@/lib/tmdbRequests'
+import { RequestType, getData } from '@/lib/requests'
 import { generateRandomNumber } from '@/lib/utils'
-import CollectionRow from '@/components/Browse/CollectionRow'
 
-const rows = [
-  {
-    title: 'Trending now',
-  },
-  {
-    title: 'Ensemble TV Comedies',
-  },
-  {
-    title: 'Hollywood Movies',
-  },
-  {
-    title: 'Indian Movies',
-  },
-  {
-    title: 'Watch it again',
-  },
-  {
-    title: 'Bollywood Superstars',
-  },
-  {
-    title: 'Acclaimed Writers',
-  },
-  {
-    title: 'Award-Winning Films',
-  },
-  {
-    title: 'Comedy Movies',
-  },
-  {
-    title: 'Romantic Favorites',
-  },
-  {
-    title: 'Award-winning European Crime TV Shows',
-  },
-  {
-    title: 'My list',
-  },
-  {
-    title: 'Sci-Fi Thriller TV Shows',
-  },
+const rows: Array<RequestType> = [
+  'Trending now',
+  'Ensemble TV Comedies',
+  'Hollywood Movies',
+  'Popular TV Shows',
+  'Award-Winning Films',
+  'Comedy Movies',
+  'Romantic Favorites',
+  'Award-winning Crime TV Shows',
+  // 'My list',
+  'Sci-Fi Thriller TV Shows',
 ]
 
 const Browse = async () => {
   await applyAuthContext()
-  const popularMovies = await getPopularMovies()
+  const popularMovies = await getData('Trending now')
   return (
-    <main className="bg-black">
+    <main className="bg-black bg-opacity-90">
       <Banner
         movie={
           popularMovies.results[
@@ -60,9 +31,9 @@ const Browse = async () => {
         }
       />
       <Navbar />
-      <div className="space-y-20">
-        {rows.map((r) => (
-          <CollectionRow title={r.title} key={r.title} />
+      <div className="space-y-20 pb-20">
+        {rows.map((type) => (
+          <CollectionRowWrapper key={type} title={type} />
         ))}
       </div>
     </main>

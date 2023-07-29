@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Logo from '../Logo'
 import { headers } from 'next/headers'
 import LogoutButton from '../Ui/LogoutButton'
+import NavbarWrapper from './NavbarWrapper'
 
 const links = [
   {
@@ -35,9 +36,10 @@ const Navbar = () => {
   const domain = headersList.get('host') || ''
   const fullUrl = headersList.get('referer') || ''
   const [, pathname] = fullUrl.match(new RegExp(`https?://${domain}(.*)`)) || []
+
   return (
     <div className="fixed top-0 z-30 w-full">
-      <nav className="flex h-16 items-center justify-between px-4 text-white md:px-8 lg:px-12 xl:px-16">
+      <NavbarWrapper>
         <div className="flex items-center gap-8">
           <div className="w-24 lg:w-32">
             <Logo />
@@ -57,7 +59,7 @@ const Navbar = () => {
           </div>
         </div>
         <LogoutButton />
-      </nav>
+      </NavbarWrapper>
     </div>
   )
 }

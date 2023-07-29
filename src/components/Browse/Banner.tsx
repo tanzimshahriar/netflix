@@ -1,17 +1,18 @@
-import { getMovieVideo } from '@/lib/tmdbRequests'
+import { getVideo } from '@/lib/requests'
 import BannerAutoplay from '../Ui/BannerAutoplay'
 
 const Banner = async ({ movie }: { movie: any }) => {
-  const video = await getMovieVideo(movie.id)
-  console.log('movie', movie)
+  const video = await getVideo(movie.id, movie.media_type)
   return (
-    <div className="billboard-video relative w-full bg-black">
+    <div className="relative aspect-[10/4] w-full bg-black">
       <div className="relative h-full overflow-hidden">
-        <BannerAutoplay
-          youtubeKey={video.results[0].key}
-          overview={movie.overview}
-          title={movie.title}
-        />
+        {video.results && video.results[0] && (
+          <BannerAutoplay
+            youtubeKey={video.results[0].key}
+            overview={movie.overview}
+            title={movie.title}
+          />
+        )}
       </div>
     </div>
   )
