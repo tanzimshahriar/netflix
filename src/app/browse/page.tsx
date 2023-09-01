@@ -32,9 +32,12 @@ const Browse = async () => {
       />
       <Navbar />
       <div className="space-y-20 pb-20">
-        {rows.map((type) => (
-          <CollectionRowWrapper key={type} title={type} />
-        ))}
+        {rows.map(async (type) => {
+          const titles = await getData(type)
+          return (
+            <CollectionRowWrapper key={type} titles={titles} rowName={type} />
+          )
+        })}
       </div>
     </main>
   )

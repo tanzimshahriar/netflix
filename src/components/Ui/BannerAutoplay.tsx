@@ -59,16 +59,16 @@ const BannerAutoplay = ({
           height={20}
         />
       </button>
-      <div className="absolute left-0 top-1/3 w-screen text-white">
+      <div className="absolute left-0 top-0 flex h-full w-screen flex-col justify-end py-16 text-white sm:justify-center">
         <div className="px-4 md:px-8 lg:px-12 xl:px-16">
-          <div className="max-w-xl space-y-2 lg:space-y-4 xl:space-y-6">
-            <h1 className="text-3xl font-bold lg:text-4xl xl:text-5xl">
+          <div className="max-w-xl space-y-2 pr-12 sm:pr-0 lg:space-y-4 xl:space-y-6">
+            <h1 className=" text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
               {title}
             </h1>
-            <div className="hidden lg:block">
+            <div className="hidden sm:block md:hidden lg:block">
               <p className="text-sm font-light lg:line-clamp-4">{overview}</p>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <button className="flex h-8 items-center gap-2 rounded-md bg-white px-4 text-xs font-medium text-black lg:text-sm xl:h-10 xl:text-base">
                 <Image width={20} height={20} src="/play.svg" alt="play logo" />
                 Play

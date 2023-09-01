@@ -3,7 +3,7 @@
 import { debounce } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
-const WINDOW_SCROLL_DEBOUNCE_DELAY = 300
+const WINDOW_SCROLL_DEBOUNCE_DELAY = 100
 
 export const NavbarWrapper = ({ children }: { children: any }) => {
   const [isNavDarkBg, setIsNavDarkBg] = useState(false)
@@ -33,7 +33,7 @@ export const NavbarWrapper = ({ children }: { children: any }) => {
     <nav
       className={`${
         isNavDarkBg ? 'bg-black' : ''
-      } flex h-16 items-center justify-between px-4 text-white duration-700 md:px-8 lg:px-12 xl:px-16`}
+      } flex h-16 items-center justify-between bg-opacity-80 px-4 text-white backdrop-blur duration-700 md:px-8 lg:px-12 xl:px-16`}
     >
       {children}
     </nav>

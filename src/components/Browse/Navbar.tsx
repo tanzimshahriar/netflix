@@ -38,29 +38,31 @@ const Navbar = () => {
   const [, pathname] = fullUrl.match(new RegExp(`https?://${domain}(.*)`)) || []
 
   return (
-    <div className="fixed top-0 z-30 w-full">
-      <NavbarWrapper>
-        <div className="flex items-center gap-8">
-          <div className="w-24 lg:w-32">
-            <Logo />
+    <>
+      <div className="fixed top-0 z-30 w-full">
+        <NavbarWrapper>
+          <div className="flex items-center gap-8">
+            <div className="w-24 lg:w-32">
+              <Logo />
+            </div>
+            <div className="hidden items-center justify-center text-xs lg:flex xl:text-sm">
+              {links.map((link) => (
+                <Link
+                  className={`p-4 duration-500 hover:text-zinc-400 ${
+                    pathname === link.url ? 'font-medium' : 'font-light'
+                  }`}
+                  key={link.url}
+                  href={link.url}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </div>
-          <div className="flex items-center justify-center text-xs xl:text-sm">
-            {links.map((link) => (
-              <Link
-                className={`p-4 duration-500 hover:text-zinc-400 ${
-                  pathname === link.url ? 'font-medium' : 'font-light'
-                }`}
-                key={link.url}
-                href={link.url}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <LogoutButton />
-      </NavbarWrapper>
-    </div>
+          <LogoutButton />
+        </NavbarWrapper>
+      </div>
+    </>
   )
 }
 

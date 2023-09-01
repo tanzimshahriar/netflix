@@ -3,16 +3,23 @@
 @tailwind utilities;
 
 .bg-custom-gradient {
-  background: radial-gradient(
-    51.39% 511.66% at 47.68% -217.91%,
-    #ff9900 0%,
-    #e50914 17.27%,
-    #0e1b4f 79.44%,
-    #000413 100%
-  );
+  background: radial-gradient(51.39% 511.66% at 47.68% -217.91%,
+      #ff9900 0%,
+      #e50914 17.27%,
+      #0e1b4f 79.44%,
+      #000413 100%);
 }
 
-.youtube-iframe-wrapper iframe {
-  width: 1900%;
-  height: 190%;
+@media(max-width: 768px) {
+  .youtube-iframe-wrapper iframe {
+    min-width: 250%;
+    height: 250%;
+  }
+}
+
+@media(min-width: 768px) {
+  .youtube-iframe-wrapper iframe {
+    width: 190%;
+    height: 190%;
+  }
 }

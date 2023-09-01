@@ -29,7 +29,7 @@ const Navbar = () => {
       </button>
       {!disclaimerAccepted && (
         <div className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-zinc-800 bg-opacity-50 backdrop-blur">
-          <div className="h-min w-1/3 rounded-md bg-black p-12 ">
+          <div className="mx-4 h-min rounded-md bg-black p-12 md:mx-0 md:w-1/3">
             <div className="text-4xl font-bold underline">Disclaimer</div>
             <div className="space-y-2 pt-4 text-sm font-light">
               <p>
