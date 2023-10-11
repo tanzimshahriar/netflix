@@ -50,7 +50,7 @@ const BannerAutoplay = ({
       <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-b from-black via-zinc-600 to-black opacity-30"></div>
       <button
         onClick={toggleMute}
-        className="absolute right-0 top-3/4 mx-4 rounded-full border border-white p-2"
+        className="absolute right-0 top-3/4 z-10 mx-4 rounded-full border border-white p-2"
       >
         <Image
           src={muted ? '/muted.svg' : '/unmuted.svg'}

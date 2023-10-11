@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     domains: ['image.tmdb.org'],
   },
+  fastRefresh: true,
 }
 
 module.exports = nextConfig
