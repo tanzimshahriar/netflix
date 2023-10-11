@@ -17,7 +17,7 @@ const HoverTitle = ({
   >
 }) => {
   const title = titles[hoverIndex.row].results[hoverIndex.col]
-    console.log(title)
+  // console.log(title)
   return (
     <div
       className="absolute top-0 z-10 flex w-[240px] scale-125 flex-col justify-center overflow-hidden rounded-sm bg-black text-white md:mx-8 lg:mx-12 xl:mx-16"
