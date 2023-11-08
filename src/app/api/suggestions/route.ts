@@ -10,10 +10,13 @@ export async function POST(req: Request) {
   const data = await req.json()
   try {
     suggestionsSchema.parse(data)
-  } catch (e) {
-    return Response.json({
-      error: e,
-    })
+  } catch (error) {
+    return new NextResponse(
+      JSON.stringify({
+        error,
+      }),
+      { status: 400 },
+    )
   }
   const { id, type } = data as {
     id: string
@@ -29,9 +32,7 @@ export async function POST(req: Request) {
       },
     )
     const body = await res.json()
-    return Response.json({
-      data: body.results,
-    })
+    return new NextResponse(JSON.stringify({ data: body.results }))
   } catch (error: any) {
     return new NextResponse(
       JSON.stringify({
