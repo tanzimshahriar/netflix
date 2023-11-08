@@ -23,8 +23,7 @@ export const signupSchema = z.object({
     }),
 })
 
-//TODO change url
-const REGISTER_ENDPOINT = 'http://localhost:3000/api/register'
+const REGISTER_ENDPOINT = `${process.env.NEXT_PUBLIC_API}/register`
 const SignupForm = () => {
   const router = useRouter()
   const [signingUp, setSigningUp] = useState(false)

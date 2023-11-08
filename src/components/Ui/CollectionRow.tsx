@@ -11,6 +11,7 @@ const CollectionRow = ({
   rowName,
   index,
   setHoverRowIndex,
+  setSelectedTitle,
 }: {
   titles: { results: Array<TitleData> }
   rowName: string
@@ -21,6 +22,12 @@ const CollectionRow = ({
       col: number
       rowWidth: number
       scrollPosition: number
+    }>
+  >
+  setSelectedTitle: Dispatch<
+    SetStateAction<{
+      row: number
+      col: number
     }>
   >
 }) => {
@@ -43,6 +50,12 @@ const CollectionRow = ({
                   col: idx,
                   rowWidth: containerRef.current?.clientWidth || -1,
                   scrollPosition: containerRef.current?.scrollLeft || 0,
+                })
+              }
+              onClick={() =>
+                setSelectedTitle({
+                  row: index,
+                  col: idx,
                 })
               }
             >

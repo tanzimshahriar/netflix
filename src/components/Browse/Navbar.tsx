@@ -17,18 +17,18 @@ const links = [
     name: 'Movies',
     url: '/movies',
   },
-  {
-    name: 'New & Popular',
-    url: '/latest',
-  },
-  {
-    name: 'My list',
-    url: '/my-list',
-  },
-  {
-    name: 'Browse By Languages',
-    url: '/original-audio',
-  },
+  // {
+  //   name: 'New & Popular',
+  //   url: '/latest',
+  // },
+  // {
+  //   name: 'My list',
+  //   url: '/my-list',
+  // },
+  // {
+  //   name: 'Browse By Languages',
+  //   url: '/original-audio',
+  // },
 ]
 
 const Navbar = () => {

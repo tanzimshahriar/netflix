@@ -30,7 +30,7 @@ const BrowsePageContent = ({
   const [selectedTitle, setSelectedTitle] = useState({ row: -1, col: -1 })
 
   return (
-    <div className="space-y-20 overflow-hidden pb-20">
+    <div className="space-y-20 pb-20">
       {titles &&
         rows.map((type, index) => {
           if (titles[index])
@@ -40,6 +40,7 @@ const BrowsePageContent = ({
                   titles={titles[index]}
                   index={index}
                   setHoverRowIndex={setHoverIndex}
+                  setSelectedTitle={setSelectedTitle}
                   rowName={type}
                 />
                 {hoverIndex.row === index && (
@@ -47,12 +48,13 @@ const BrowsePageContent = ({
                     titles={titles}
                     hoverIndex={hoverIndex}
                     setHoverIndex={setHoverIndex}
-                    selectTitle={() =>
+                    selectTitle={() => {
                       setSelectedTitle({
                         row: hoverIndex.row,
                         col: hoverIndex.col,
                       })
-                    }
+                      document.body.classList.add('overflow-hidden')
+                    }}
                   />
                 )}
               </div>
@@ -61,7 +63,10 @@ const BrowsePageContent = ({
       {selectedTitle.row !== -1 && selectedTitle.col !== -1 && (
         <PlayScreen
           title={titles[selectedTitle.row]?.results[selectedTitle.col]}
-          close={() => setSelectedTitle({ row: -1, col: -1 })}
+          close={() => {
+            setSelectedTitle({ row: -1, col: -1 })
+            document.body.classList.remove('overflow-hidden')
+          }}
         />
       )}
     </div>

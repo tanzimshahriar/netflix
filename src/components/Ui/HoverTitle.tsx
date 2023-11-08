@@ -23,7 +23,7 @@ const HoverTitle = ({
   const title = titles[hoverIndex.row].results[hoverIndex.col]
   return (
     <div
-      className="absolute top-0 z-10 hidden w-[240px] scale-125 cursor-pointer flex-col justify-center overflow-hidden rounded-sm bg-black text-white md:mx-8 md:flex lg:mx-12 xl:mx-16"
+      className="absolute top-0 z-20 hidden w-[240px] scale-125 cursor-pointer flex-col justify-center overflow-hidden rounded-sm bg-black text-white md:mx-8 md:flex lg:mx-12 xl:mx-16"
       style={{ left: hoverIndex.col * 244 - hoverIndex.scrollPosition }}
       onMouseLeave={() =>
         setHoverIndex({ row: -1, col: -1, rowWidth: -1, scrollPosition: 0 })

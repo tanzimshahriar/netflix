@@ -28,7 +28,7 @@ const Browse = async () => {
 
   const popularMovies = await getData('Trending now')
   return (
-    <main className="bg-black bg-opacity-90">
+    <main className="bg-black bg-opacity-90 pb-10">
       <Banner
         movie={
           popularMovies.results[
