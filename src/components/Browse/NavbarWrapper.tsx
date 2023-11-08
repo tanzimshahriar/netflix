@@ -32,8 +32,10 @@ export const NavbarWrapper = ({ children }: { children: any }) => {
   return (
     <nav
       className={`${
-        isNavDarkBg ? 'bg-black' : ''
-      } flex h-16 items-center justify-between bg-opacity-80 px-4 text-white backdrop-blur duration-700 md:px-8 lg:px-12 xl:px-16`}
+        isNavDarkBg
+          ? 'bg-black'
+          : 'bg-opacity-5 bg-gradient-to-b from-zinc-900 to-transparent'
+      } flex h-16 items-center justify-between px-4 text-white duration-700 md:px-8 lg:px-12 xl:px-16`}
     >
       {children}
     </nav>

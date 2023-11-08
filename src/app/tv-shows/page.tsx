@@ -1,0 +1,39 @@
+import Banner from '@/components/Browse/Banner'
+import BrowsePageContent from '@/components/Browse/BrowsePageContent'
+import Navbar from '@/components/Browse/Navbar'
+import { applyAuthContext } from '@/lib/authUtils'
+import { RequestType, getData } from '@/lib/requests'
+import { generateRandomNumber } from '@/lib/utils'
+
+const rows: Array<RequestType> = [
+  'Ensemble TV Comedies',
+  'Popular TV Shows',
+  'Award-winning Crime TV Shows',
+  'Sci-Fi Thriller TV Shows',
+]
+
+const Browse = async () => {
+  await applyAuthContext()
+  const titles = await Promise.all(
+    rows.map(async (type, index) => {
+      return await getData(type)
+    }),
+  )
+
+  const popularMovies = await getData('Trending now')
+  return (
+    <main className="bg-black bg-opacity-90">
+      <Banner
+        movie={
+          popularMovies.results[
+            generateRandomNumber(0, popularMovies?.results?.length - 1, 1)
+          ]
+        }
+      />
+      <Navbar />
+      <BrowsePageContent rows={rows} titles={titles} />
+    </main>
+  )
+}
+
+export default Browse

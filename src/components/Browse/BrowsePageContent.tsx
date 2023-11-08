@@ -20,7 +20,12 @@ const BrowsePageContent = ({
   rows: Array<RequestType>
   titles: any
 }) => {
-  const [hoverIndex, setHoverIndex] = useState({ row: -1, col: -1 })
+  const [hoverIndex, setHoverIndex] = useState({
+    row: -1,
+    col: -1,
+    rowWidth: -1,
+    scrollPosition: 0,
+  })
 
   return (
     <div className="space-y-20 overflow-hidden pb-20">

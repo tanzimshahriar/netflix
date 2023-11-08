@@ -19,6 +19,8 @@ const CollectionRow = ({
     SetStateAction<{
       row: number
       col: number
+      rowWidth: number
+      scrollPosition: number
     }>
   >
 }) => {
@@ -35,13 +37,17 @@ const CollectionRow = ({
             <div
               key={titleData.backdrop_path}
               className="flex h-[135px] w-[240px] flex-col rounded-sm"
-              onMouseEnter={() => {
-                console.log(idx)
-                setHoverRowIndex({ row: index, col: idx })
-              }}
+              onMouseEnter={() =>
+                setHoverRowIndex({
+                  row: index,
+                  col: idx,
+                  rowWidth: containerRef.current?.clientWidth || -1,
+                  scrollPosition: containerRef.current?.scrollLeft || 0,
+                })
+              }
             >
               <Image
-                src={`https://image.tmdb.org/t/p/w200${titleData.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w400${titleData.backdrop_path}`}
                 alt="title-image"
                 width={240}
                 height={135}
