@@ -5,6 +5,7 @@ import { useState } from 'react'
 import CollectionRow from '../Ui/CollectionRow'
 import HoverTitle from '../Ui/HoverTitle'
 import { TitleData } from '../Ui/TitleCard'
+import PlayScreen from './PlayScreen'
 
 export type HoverDataType =
   | {
@@ -26,6 +27,7 @@ const BrowsePageContent = ({
     rowWidth: -1,
     scrollPosition: 0,
   })
+  const [selectedTitle, setSelectedTitle] = useState({ row: -1, col: -1 })
 
   return (
     <div className="space-y-20 overflow-hidden pb-20">
@@ -45,11 +47,23 @@ const BrowsePageContent = ({
                     titles={titles}
                     hoverIndex={hoverIndex}
                     setHoverIndex={setHoverIndex}
+                    selectTitle={() =>
+                      setSelectedTitle({
+                        row: hoverIndex.row,
+                        col: hoverIndex.col,
+                      })
+                    }
                   />
                 )}
               </div>
             )
         })}
+      {selectedTitle.row !== -1 && selectedTitle.col !== -1 && (
+        <PlayScreen
+          title={titles[selectedTitle.row]?.results[selectedTitle.col]}
+          close={() => setSelectedTitle({ row: -1, col: -1 })}
+        />
+      )}
     </div>
   )
 }

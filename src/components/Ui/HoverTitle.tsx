@@ -6,6 +6,7 @@ const HoverTitle = ({
   titles,
   hoverIndex,
   setHoverIndex,
+  selectTitle,
 }: {
   titles: Array<any>
   hoverIndex: any
@@ -17,16 +18,17 @@ const HoverTitle = ({
       scrollPosition: number
     }>
   >
+  selectTitle: () => void
 }) => {
   const title = titles[hoverIndex.row].results[hoverIndex.col]
-  console.log(hoverIndex.scrollPosition)
   return (
     <div
-      className="absolute top-0 z-10 hidden w-[240px] scale-125 flex-col justify-center overflow-hidden rounded-sm bg-black text-white md:mx-8 md:flex lg:mx-12 xl:mx-16"
+      className="absolute top-0 z-10 hidden w-[240px] scale-125 cursor-pointer flex-col justify-center overflow-hidden rounded-sm bg-black text-white md:mx-8 md:flex lg:mx-12 xl:mx-16"
       style={{ left: hoverIndex.col * 244 - hoverIndex.scrollPosition }}
       onMouseLeave={() =>
         setHoverIndex({ row: -1, col: -1, rowWidth: -1, scrollPosition: 0 })
       }
+      onClick={selectTitle}
     >
       <Image
         src={`https://image.tmdb.org/t/p/w400${title.backdrop_path}`}
@@ -52,6 +54,7 @@ const HoverTitle = ({
             <Image src="/like.svg" alt="like" width={15} height={15} />
           </button>
         </div>
+        <div className="pt-3 text-xs">{title.title || title.name}</div>
       </div>
     </div>
   )
