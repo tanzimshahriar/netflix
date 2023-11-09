@@ -62,18 +62,18 @@ const BannerAutoplay = ({
       <div className="absolute left-0 top-0 flex h-full w-screen flex-col justify-end py-16 text-white sm:justify-center">
         <div className="px-4 md:px-8 lg:px-12 xl:px-16">
           <div className="max-w-xl space-y-2 pr-12 sm:pr-0 lg:space-y-4 xl:space-y-6">
-            <h1 className=" text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
+            <h1 className="text-lg font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
               {title}
             </h1>
             <div className="hidden sm:block md:hidden lg:block">
               <p className="text-sm font-light lg:line-clamp-4">{overview}</p>
             </div>
-            <div className="flex flex-wrap gap-4">
-              <button className="flex h-8 items-center gap-2 rounded-md bg-white px-4 text-xs font-medium text-black lg:text-sm xl:h-10 xl:text-base">
+            <div className="flex flex-wrap gap-2 sm:gap-4">
+              <button className="flex h-8 items-center gap-2 rounded-md bg-white px-4 text-[10px] font-medium text-black sm:text-xs lg:text-sm xl:h-10 xl:text-base">
                 <Image width={20} height={20} src="/play.svg" alt="play logo" />
                 Play
               </button>
-              <button className="text-fill-white flex h-8 items-center gap-2 rounded-md bg-zinc-700 px-4 text-xs font-medium lg:text-sm xl:h-10 xl:text-base">
+              <button className="text-fill-white flex h-8 items-center gap-2 rounded-md bg-zinc-700 px-4 text-[10px] font-medium sm:text-xs lg:text-sm xl:h-10 xl:text-base">
                 <Image width={22} height={22} src="/info.svg" alt="info logo" />
                 More info
               </button>

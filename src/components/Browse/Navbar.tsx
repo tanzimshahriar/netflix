@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import LogoutButton from '../Ui/LogoutButton'
 import NavbarWrapper from './NavbarWrapper'
 import Image from 'next/image'
+import SearchBar from '../Ui/SearchBar'
 
 const links = [
   {
@@ -43,12 +44,14 @@ const Navbar = () => {
       <div className="fixed top-0 z-30 w-full">
         <NavbarWrapper>
           <div className="flex items-center gap-8">
-            <div className="w-24 lg:w-32">
+            <div className="w-14 sm:w-24 lg:w-32">
               <Logo />
             </div>
-            <div className="group absolute left-36 top-0 flex flex-col text-xs lg:static lg:flex-row lg:items-center lg:justify-center xl:text-sm">
-              <div className="flex items-center justify-center  gap-1 p-2 pt-6 text-sm lg:hidden">
-                <div className="cursor-pointer text-xs">Browse</div>
+            <div className="group absolute left-20 top-0 flex min-h-full flex-col text-xs sm:left-36 lg:static lg:flex-row lg:items-center lg:justify-center xl:text-sm">
+              <div className="flex h-full gap-1 p-2 pt-5 text-sm sm:pt-6 lg:hidden">
+                <div className="flex cursor-pointer text-[10px] sm:text-xs">
+                  Browse
+                </div>
                 <Image
                   src="/down.svg"
                   width={10}
@@ -70,7 +73,10 @@ const Navbar = () => {
               ))}
             </div>
           </div>
-          <LogoutButton />
+          <div className="flex gap-2 sm:gap-4 lg:gap-6">
+            <SearchBar />
+            <LogoutButton />
+          </div>
         </NavbarWrapper>
       </div>
     </>
