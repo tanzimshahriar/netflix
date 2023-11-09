@@ -1,3 +1,4 @@
+import { getSession } from '@/lib/auth/session'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
@@ -7,7 +8,12 @@ const suggestionsSchema = z.object({
 })
 
 export async function POST(req: Request) {
+  const session = await getSession()
+  if (null === session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
   const data = await req.json()
+
   try {
     suggestionsSchema.parse(data)
   } catch (error) {

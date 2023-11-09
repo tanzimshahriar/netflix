@@ -1,6 +1,7 @@
 import axios from 'axios'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
+import Cookies from 'js-cookie'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
