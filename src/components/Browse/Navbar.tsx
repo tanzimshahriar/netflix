@@ -59,7 +59,7 @@ const Navbar = () => {
               </div>
               {links.map((link) => (
                 <Link
-                  className={`hidden bg-zinc-800 p-2 duration-500 group-hover:block hover:text-zinc-400 lg:block lg:p-4 ${
+                  className={`hidden bg-zinc-800 p-2 duration-500 group-hover:block hover:text-zinc-400 lg:block lg:bg-transparent lg:p-4 ${
                     pathname === link.url ? 'font-medium' : 'font-light'
                   }`}
                   key={link.url}
