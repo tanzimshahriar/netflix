@@ -48,7 +48,7 @@ const Navbar = () => {
             </div>
             <div className="group absolute left-36 top-0 flex flex-col text-xs lg:static lg:flex-row lg:items-center lg:justify-center xl:text-sm">
               <div className="flex items-center justify-center  gap-1 p-2 pt-6 text-sm lg:hidden">
-                <div className="text-xs">Browse</div>
+                <div className="cursor-pointer text-xs">Browse</div>
                 <Image
                   src="/down.svg"
                   width={10}
