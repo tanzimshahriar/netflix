@@ -125,6 +125,9 @@ const PlayScreen = ({ title, close }: { title: any; close: () => void }) => {
                 HD
               </div>
             </div>
+            {loading && (
+              <div className="my-6 h-24 w-full animate-pulse rounded-md bg-zinc-800"></div>
+            )}
             {details?.overview && (
               <div className="py-2 text-xs font-light leading-6">
                 {details.overview}
@@ -147,6 +150,9 @@ const PlayScreen = ({ title, close }: { title: any; close: () => void }) => {
                 <span className="text-gray-400">Imdb Rating: </span>
                 <span>{details.vote_average}</span>
               </div>
+            )}
+            {loading && (
+              <div className="my-6 h-10 w-full animate-pulse rounded-md bg-zinc-800"></div>
             )}
           </div>
         </div>
