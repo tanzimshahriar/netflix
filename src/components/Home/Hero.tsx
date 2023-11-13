@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import Navbar from './Navbar'
 import HeroText from './HeroText'
+import UnauthNavbar from './UnauthNavbar'
 
 const Hero = () => {
   return (
@@ -12,7 +12,7 @@ const Hero = () => {
         alt="hero-background"
       />
       <div className="container flex flex-col">
-        <Navbar />
+        <UnauthNavbar />
         <HeroText />
       </div>
     </>

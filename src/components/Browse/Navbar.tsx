@@ -1,10 +1,11 @@
-import Link from 'next/link'
-import Logo from '../Logo'
-import { headers } from 'next/headers'
-import LogoutButton from '../Ui/LogoutButton'
-import NavbarWrapper from './NavbarWrapper'
+'use client'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import Logo from '../Logo'
+import LogoutButton from '../Ui/LogoutButton'
 import SearchBar from '../Ui/SearchBar'
+import NavbarWrapper from './NavbarWrapper'
 
 const links = [
   {
@@ -34,10 +35,7 @@ const links = [
 ]
 
 const Navbar = () => {
-  const headersList = headers()
-  const domain = headersList.get('host') || ''
-  const fullUrl = headersList.get('referer') || ''
-  const [, pathname] = fullUrl.match(new RegExp(`https?://${domain}(.*)`)) || []
+  const pathname = usePathname()
 
   return (
     <>

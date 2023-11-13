@@ -5,7 +5,7 @@ import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import Spinning from '../Ui/Spinning'
 
-const Navbar = () => {
+const UnauthNavbar = () => {
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(
     typeof window !== 'undefined' &&
       sessionStorage.getItem('disclaimerAccepted') === 'true',
@@ -72,4 +72,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default UnauthNavbar

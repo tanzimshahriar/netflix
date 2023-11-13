@@ -5,7 +5,6 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import { SignInResponse, signIn } from 'next-auth/react'
 import { ZodError, ZodIssue, z } from 'zod'
 import Spinning from '../Spinning'
-import { useRouter } from 'next/navigation'
 
 const MOCK_USER = 'tanzim@yahoo.com'
 const MOCK_PASSWORD = '123456'
@@ -50,7 +49,6 @@ const SigninForm = () => {
   const [loginErrorMessage, setLoginErrorMessage] = useState<String | null>(
     null,
   )
-  const router = useRouter()
 
   const validateAndLogin = (isMock: boolean) => {
     if (isMock) {
@@ -83,7 +81,8 @@ const SigninForm = () => {
           setLoginErrorMessage(res.error)
         } else {
           setLoginErrorMessage(null)
-          router.push('/browse')
+          window.history.pushState({}, '', `/browse`)
+          window.location.reload()
         }
       })
       .catch((error) => {

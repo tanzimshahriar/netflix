@@ -1,9 +1,45 @@
 'use client'
+import { useSearchInput } from '@/contexts/SearchInputContext'
 import Image from 'next/image'
-import { useState } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 
 const SearchBar = () => {
   const [expanded, setExpanded] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
+  const params = useSearchParams()
+  const inputRef = useRef<HTMLInputElement>(null)
+  const { searchInput, setSearchInput } = useSearchInput()
+
+  useEffect(() => {
+    if (pathname === '/search') {
+      setExpanded(true)
+      setSearchInput(params.get('q') || '')
+      inputRef?.current?.focus()
+    } else {
+      setExpanded(false)
+      setSearchInput('')
+    }
+  }, [params, pathname, setSearchInput])
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value)
+    if (pathname === '/search') {
+      // TODO: Clearing search will navigate back to previous page and hide search input
+      // currently navigates back to browse page when search is cleared
+      if (e.target.value === '') {
+        setExpanded(false)
+        // router.back()
+        router.push('/browse')
+      } else {
+        // window.history.replaceState({}, '', `/search?q=${e.target.value}`)
+        window.history.pushState({}, '', `/search?q=${e.target.value}`)
+      }
+    } else {
+      router.push(`/search?q=${e.target.value}`)
+    }
+  }
   return (
     <div
       className={`z-20 flex transform border-white bg-opacity-70 transition-all duration-300 ${
@@ -31,6 +67,9 @@ const SearchBar = () => {
             type="text"
             placeholder="Movies, tv"
             aria-label="search"
+            onChange={handleSearch}
+            defaultValue={searchInput}
+            ref={inputRef}
           />
         </div>
       )}

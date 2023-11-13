@@ -1,6 +1,5 @@
 import Banner from '@/components/Browse/Banner'
 import BrowsePageContent from '@/components/Browse/BrowsePageContent'
-import Navbar from '@/components/Browse/Navbar'
 import { applyAuthContext } from '@/lib/authUtils'
 import { RequestType, getData } from '@/lib/requests'
 import { generateRandomNumber } from '@/lib/utils'
@@ -30,7 +29,6 @@ const Browse = async () => {
           ]
         }
       />
-      <Navbar />
       <BrowsePageContent rows={rows} titles={titles} />
     </main>
   )

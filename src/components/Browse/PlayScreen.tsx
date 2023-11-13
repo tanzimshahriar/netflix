@@ -25,7 +25,6 @@ const PlayScreen = ({ title, close }: { title: any; close: () => void }) => {
           title.original_title === response.data.data.original_title) ||
         (response.data?.data?.name && title.name === response.data.data.name)
       ) {
-        console.log('inside if')
         setDetails(response.data.data)
         setSuggestions(suggestions.data.data)
         setLoading(false)
