@@ -1,7 +1,7 @@
 'use client'
 
 import { RequestType } from '@/lib/requests'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CollectionRow from '../Ui/CollectionRow'
 import HoverTitle from '../Ui/HoverTitle'
 import { TitleData } from '../Ui/TitleCard'
@@ -28,6 +28,10 @@ const BrowsePageContent = ({
     scrollPosition: 0,
   })
   const [selectedTitle, setSelectedTitle] = useState({ row: -1, col: -1 })
+
+  useEffect(() => {
+    document.body.classList.remove('overflow-hidden')
+  }, [])
 
   return (
     <div className="space-y-20 pb-20">

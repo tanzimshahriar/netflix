@@ -20,6 +20,10 @@ const SearchResult = () => {
   const [selected, setSelected] = useState(-1)
 
   useEffect(() => {
+    document.body.classList.remove('overflow-hidden')
+  }, [])
+
+  useEffect(() => {
     const getSearchData = async () => {
       if (!debouncedSearchInput) {
         return
