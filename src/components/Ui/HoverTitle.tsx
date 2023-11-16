@@ -32,7 +32,7 @@ const HoverTitle = ({
     >
       <Image
         src={`https://image.tmdb.org/t/p/w400${title.backdrop_path}`}
-        alt="no image available"
+        alt={title.title || title.name}
         width={240}
         height={135}
         className="cursor-pointer rounded-sm object-cover group-hover:hidden"

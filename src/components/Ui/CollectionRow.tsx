@@ -61,7 +61,7 @@ const CollectionRow = ({
             >
               <Image
                 src={`https://image.tmdb.org/t/p/w400${titleData.backdrop_path}`}
-                alt="no image available"
+                alt={titleData.title || titleData.name || 'image not available'}
                 width={240}
                 height={135}
                 className="cursor-pointer rounded-sm object-cover group-hover:hidden"

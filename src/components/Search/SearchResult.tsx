@@ -64,7 +64,7 @@ const SearchResult = () => {
               <div>
                 <Image
                   src={`https://image.tmdb.org/t/p/w400${r.backdrop_path}`}
-                  alt="no image available"
+                  alt={r.title || r.name}
                   width={240}
                   height={135}
                   className="flex-1 cursor-pointer rounded-sm object-cover group-hover:hidden"
