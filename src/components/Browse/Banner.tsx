@@ -13,7 +13,7 @@ const Banner = async ({ movie }: { movie: any }) => {
               video.results[0].key
             }
             overview={movie.overview}
-            title={movie.title}
+            title={movie.title || movie.name}
             data={movie}
           />
         )}
