@@ -1,20 +1,26 @@
 'use client'
 
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import YouTube from 'react-youtube'
+import PlayScreen from '../Browse/PlayScreen'
 
 const BannerAutoplay = ({
   youtubeKey,
   title,
   overview,
+  data,
 }: {
   youtubeKey: string
   title: string
   overview: string
+  data: any
 }) => {
   const [video, setVideo] = useState<any>(undefined)
   const [muted, setMuted] = useState(true)
+  const [selected, setSelected] = useState(false)
+  const router = useRouter()
   const opts = {
     playerVars: {
       controls: 0,
@@ -71,11 +77,20 @@ const BannerAutoplay = ({
               <p className="text-sm font-light lg:line-clamp-4">{overview}</p>
             </div>
             <div className="flex flex-wrap gap-2 sm:gap-4">
-              <button className="flex h-8 items-center gap-2 rounded-md bg-white px-4 text-[10px] font-medium text-black sm:text-xs lg:text-sm xl:h-10 xl:text-base">
+              <button
+                onClick={() => router.push(`/watch/${youtubeKey}`)}
+                className="flex h-8 items-center gap-2 rounded-md bg-white px-4 text-[10px] font-medium text-black sm:text-xs lg:text-sm xl:h-10 xl:text-base"
+              >
                 <Image width={20} height={20} src="/play.svg" alt="play logo" />
                 Play
               </button>
-              <button className="text-fill-white flex h-8 items-center gap-2 rounded-md bg-zinc-700 px-4 text-[10px] font-medium sm:text-xs lg:text-sm xl:h-10 xl:text-base">
+              <button
+                onClick={() => {
+                  setSelected(true)
+                  document.body.classList.add('overflow-hidden')
+                }}
+                className="text-fill-white flex h-8 items-center gap-2 rounded-md bg-zinc-700 px-4 text-[10px] font-medium sm:text-xs lg:text-sm xl:h-10 xl:text-base"
+              >
                 <Image width={22} height={22} src="/info.svg" alt="info logo" />
                 More info
               </button>
@@ -83,6 +98,17 @@ const BannerAutoplay = ({
           </div>
         </div>
       </div>
+      {selected && (
+        <div className="my-20">
+          <PlayScreen
+            title={data}
+            close={() => {
+              setSelected(false)
+              document.body.classList.remove('overflow-hidden')
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }

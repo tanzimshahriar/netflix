@@ -11,6 +11,7 @@ const Banner = async ({ movie }: { movie: any }) => {
             youtubeKey={video.results[0].key}
             overview={movie.overview}
             title={movie.title}
+            data={movie}
           />
         )}
       </div>

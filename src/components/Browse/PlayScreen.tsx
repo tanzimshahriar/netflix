@@ -56,7 +56,7 @@ const PlayScreen = ({
       setLoading(false)
       setError(true)
     }
-  }, [title?.id, title.media_type, title?.name, title?.original_title])
+  }, [title?.id, title?.media_type, title?.name, title?.original_title])
 
   const getDetails = async (type: string, id: string) => {
     return axios.post(`${process.env.NEXT_PUBLIC_API}/getById`, {
@@ -96,7 +96,7 @@ const PlayScreen = ({
           <Image
             className="flex-1 rounded-t-md opacity-50"
             alt="movie_title"
-            src={`https://image.tmdb.org/t/p/original${title.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original${title?.backdrop_path}`}
             width={1000}
             height={600}
           ></Image>
@@ -145,7 +145,7 @@ const PlayScreen = ({
         <div className="grid gap-8 px-4 pb-4 pt-10 md:grid-cols-4 md:px-10">
           <div className="md:col-span-3">
             <div className="pb-2 text-xl">
-              {title.original_title || title.name}
+              {title?.original_title || title?.name}
             </div>
             <div className="flex items-center gap-3">
               {details?.release_date && (
