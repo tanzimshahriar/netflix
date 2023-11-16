@@ -8,7 +8,10 @@ const Banner = async ({ movie }: { movie: any }) => {
       <div className="relative h-full overflow-hidden">
         {video.results && video.results[0] && (
           <BannerAutoplay
-            youtubeKey={video.results[0].key}
+            youtubeKey={
+              video.results.filter((v: any) => v.type === 'Trailer')[0].key ||
+              video.results[0].key
+            }
             overview={movie.overview}
             title={movie.title}
             data={movie}
