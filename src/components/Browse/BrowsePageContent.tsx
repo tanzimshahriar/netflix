@@ -63,6 +63,7 @@ const BrowsePageContent = ({
       {selectedTitle.row !== -1 && selectedTitle.col !== -1 && (
         <PlayScreen
           title={titles[selectedTitle.row]?.results[selectedTitle.col]}
+          extraTopSpace={true}
           close={() => {
             setSelectedTitle({ row: -1, col: -1 })
             document.body.classList.remove('overflow-hidden')

@@ -2,17 +2,26 @@ import axios from 'axios'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 dayjs.extend(duration)
 
-const API_CALL_THRESHOLD = 3
-
-const PlayScreen = ({ title, close }: { title: any; close: () => void }) => {
+const PlayScreen = ({
+  title,
+  close,
+  extraTopSpace = false,
+}: {
+  title: any
+  close: () => void
+  extraTopSpace?: boolean
+}) => {
   const [details, setDetails] = useState<any>(null)
   const [suggestions, setSuggestions] = useState([])
+  const [videos, setVideos] = useState<any>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     async function fetchDetails() {
@@ -20,6 +29,7 @@ const PlayScreen = ({ title, close }: { title: any; close: () => void }) => {
       const id = title?.id?.toString() || ''
       const response = await getDetails(initialType, id)
       const suggestions = await getSuggestions(initialType, id)
+      const videos = await getVideos(initialType, id)
       if (
         (response.data?.data?.original_title &&
           title.original_title === response.data.data.original_title) ||
@@ -27,13 +37,16 @@ const PlayScreen = ({ title, close }: { title: any; close: () => void }) => {
       ) {
         setDetails(response.data.data)
         setSuggestions(suggestions.data.data)
+        setVideos(videos.data.data)
         setLoading(false)
       } else {
         const newType = initialType === 'tv' ? 'movie' : 'tv'
         const response = await getDetails(newType, id)
         const suggestions = await getSuggestions(newType, id)
+        const videos = await getVideos(newType, id)
         setDetails(response.data.data)
         setSuggestions(suggestions.data.data)
+        setVideos(videos.data.data)
         setLoading(false)
       }
     }
@@ -59,9 +72,18 @@ const PlayScreen = ({ title, close }: { title: any; close: () => void }) => {
     })
   }
 
+  const getVideos = async (type: string, id: string) => {
+    return await axios.post(`${process.env.NEXT_PUBLIC_API}/video`, {
+      type,
+      id,
+    })
+  }
+
   return (
     <div
-      className="fixed -top-20 z-30 h-screen w-screen overflow-scroll bg-black bg-opacity-50"
+      className={`fixed left-0 z-30 h-screen w-screen overflow-scroll bg-black bg-opacity-50 ${
+        extraTopSpace ? '-top-20' : 'top-0'
+      }`}
       onClick={(e) => {
         close()
       }}
@@ -85,10 +107,28 @@ const PlayScreen = ({ title, close }: { title: any; close: () => void }) => {
             <Image alt="close button" src="/plus.svg" width={25} height={25} />
           </button>
           <div className="absolute bottom-10 flex gap-2 px-4 md:px-10">
-            <button className="flex items-center justify-center gap-2 rounded-md bg-white px-5 py-2 text-black duration-300 hover:bg-gray-100">
-              <Image width={15} height={15} alt="play button" src="/play.svg" />
-              <div>Play</div>
-            </button>
+            {videos[0] && (
+              <button
+                onClick={() =>
+                  router.push(
+                    `/watch/${
+                      videos.filter((v: any) => v.type === 'Trailer')[0].key ||
+                      videos[0].key
+                    }`,
+                  )
+                }
+                className="flex items-center justify-center gap-2 rounded-md bg-white px-5 py-2 text-black duration-300 hover:bg-gray-100"
+              >
+                <Image
+                  width={15}
+                  height={15}
+                  alt="play button"
+                  src="/play.svg"
+                />
+                <div>Play</div>
+              </button>
+            )}
+
             <button className="flex items-center justify-center rounded-full border-2 border-gray-200 p-2">
               <Image
                 src="/plus.svg"

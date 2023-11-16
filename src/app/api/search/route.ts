@@ -46,7 +46,7 @@ export async function GET(req: Request) {
     moviesResult.results.forEach((r: any) => (r.media_type = 'movie'))
     tvShowsResult.results.forEach((r: any) => (r.media_type = 'tv'))
 
-    let finalResult = [...moviesResult.results, tvShowsResult.results]
+    let finalResult = [...moviesResult.results, ...tvShowsResult.results]
     finalResult.sort((a, b) => {
       const first = a.title || a.name
       const second = b.title || b.name

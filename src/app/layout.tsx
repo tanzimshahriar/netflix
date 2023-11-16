@@ -22,7 +22,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} flex min-h-[100vh] flex-col`}>
         {/* if user is logged in then everything is client side */}
         {session ? (
           <AuthenticatedApp>{children}</AuthenticatedApp>

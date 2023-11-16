@@ -130,7 +130,7 @@ export const getVideo = async (id: string, mediaType: string) => {
     mediaType === 'movie'
       ? `https://api.themoviedb.org/3/movie/${id}/videos`
       : `https://api.themoviedb.org/3/tv/${id}/videos`
-  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos`, {
+  const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${process.env.TMDB_TOKEN}`,
     },

@@ -22,6 +22,8 @@ const BannerAutoplay = ({
       loop: 1,
       autoplay: 1,
       mute: 1,
+      rel: 0,
+      modestbranding: 1,
     },
   }
 

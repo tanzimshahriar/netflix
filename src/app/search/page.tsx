@@ -5,7 +5,7 @@ const Search = async () => {
   await applyAuthContext()
 
   return (
-    <main className="bg-black bg-opacity-90 pb-10">
+    <main className="flex-1 bg-black bg-opacity-90 pb-10">
       <SearchResult />
     </main>
   )

@@ -9,7 +9,7 @@ const TitleCard = ({ titleData }: { titleData: TitleData }) => {
     >
       <Image
         src={`https://image.tmdb.org/t/p/w200${titleData.backdrop_path}`}
-        alt="title-image"
+        alt="no image available"
         width={240}
         height={135}
         className="rounded-sm object-cover"
